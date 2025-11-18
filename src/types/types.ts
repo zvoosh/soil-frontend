@@ -6,12 +6,14 @@ export type TUser = {
 };
 
 export type TSoil = {
+  id?: string;
   name: string;
   soilType: string;
   contact: string;
 };
 
 export type TDistributer = {
+  id?: string;
   name: string;
   location: string;
   email: string;

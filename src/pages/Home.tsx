@@ -1,70 +1,45 @@
 // Home.tsx
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDistributersQuery, useSoilQuery } from "../api/query";
+import type { TDistributer, TSoil } from "../types/types";
 
 const Heading = () => {
   return (
     <div className="text-center mt-40 w-full">
       <h1 className="text-5xl">Welcome, Dusan</h1>
       <h3 className="text-2xl my-5">Soil menager for applicants</h3>
-      <Link to={"/info"} className="underline hover:text-blue-500">
+      <Link
+        to={"/info"}
+        className="underline text-indigo-500 hover:text-indigo-700"
+      >
         View Soil Info
       </Link>
     </div>
   );
 };
 
-const soilDetails = [
-  {
-    id: 1,
-    distributed: "Lola",
-    type: "Sandy",
-  },
-  {
-    id: 2,
-    distributed: "Marko",
-    type: "Clay",
-  },
-  {
-    id: 3,
-    distributed: "Nick",
-    type: "Silty",
-  },
-  {
-    id: 4,
-    distributed: "Justin",
-    type: "Peaty",
-  },
-  {
-    id: 5,
-    distributed: "Stefan",
-    type: "Chalky",
-  },
-  {
-    id: 6,
-    distributed: "David",
-    type: "Loamy",
-  },
-];
-
 const SoilDetails = () => {
+  const { data, isLoading } = useSoilQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="flex justify-center mt-40">
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl select-none">View Soil Details</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {soilDetails.map((item, index) => (
+          {data?.map((item: TSoil, index: number) => (
             <div
               key={index}
               className="bg-gray-100 rounded-lg w-[300px] py-4 px-6 cursor-pointer select-none"
             >
-              <h4 className="mb-5 text-2xl font-semibold">
-                {item.distributed}
-              </h4>
+              <h4 className="mb-5 text-2xl font-semibold">{item.name}</h4>
               <div className="flex justify-between mb-5 text-gray-500">
                 <p>Soil type</p>
-                <p>{item.type}</p>
+                <p>{item.soilType}</p>
               </div>
             </div>
           ))}
@@ -75,39 +50,6 @@ const SoilDetails = () => {
 };
 
 const tableHead = ["Name", "Location", "Contact", "Seed", "Actions"];
-
-const tableRows = [
-  {
-    name: "Dusan",
-    email: "dusan@example.com",
-    location: "Serbia",
-    seed: "Grapes",
-  },
-  {
-    name: "Mira",
-    email: "mira@example.com",
-    location: "Frence",
-    seed: "Berries",
-  },
-  {
-    name: "Nikola",
-    email: "nikola@example.com",
-    location: "Italy",
-    seed: "Wheat",
-  },
-  {
-    name: "Dusan",
-    email: "dusan@example.com",
-    location: "Serbia",
-    seed: "Grapes",
-  },
-  {
-    name: "Mira",
-    email: "mira@example.com",
-    location: "Frence",
-    seed: "Berries",
-  },
-];
 
 const DistributerDetails = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -120,16 +62,25 @@ const DistributerDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
 
-  const filteredRows = tableRows.filter((row) =>
-    Object.values(row).some((value) =>
-      String(value).toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  );
+  const { data, isLoading } = useDistributersQuery();
+
+  const filteredRows = useMemo(() => {
+    if (!data) return [];
+    return data.filter((row: TDistributer) =>
+      Object.values(row).some((value) =>
+        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [data, searchQuery]);
 
   const paginatedRows = filteredRows.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="flex flex-col gap-5 mt-20 pb-10">
@@ -166,7 +117,7 @@ const DistributerDetails = () => {
                 <td className="px-10 py-6">{item.seed}</td>
                 <td className="px-10 py-6">
                   <div
-                    className="text-blue-500 underline cursor-pointer w-fit select-none"
+                    className="text-indigo-500 hover:text-indigo-700 underline cursor-pointer w-fit select-none"
                     onClick={() => setIsOpen(item)}
                   >
                     View

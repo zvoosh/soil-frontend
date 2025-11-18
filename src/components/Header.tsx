@@ -2,17 +2,22 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 const navItems = [
-  { to: "/home", label: "Home" },
-  { to: "/info", label: "Soil Info" },
-  { to: "/soil", label: "Soil Details" },
-  { to: "/distributer", label: "Distributer Details" },
+  { to: "/user/home", label: "Home" },
+  { to: "/user/info", label: "Soil Info" },
+  { to: "/user/soil", label: "Soil Details" },
+  { to: "/user/distributer", label: "Distributer Details" },
+  { to: "/login", label: "Logout" },
 ];
 
 const Navbar = () => {
+  const rawUser = sessionStorage.getItem("user");
+  const user = rawUser ? JSON.parse(rawUser) : null;
+  const role = user?.role ?? "";
+
   return (
     <nav aria-label="Main navigation">
       <ul className="flex flex-row gap-5">
-        {navItems.map(({ to, label }) => (
+        {role !== "admin" && navItems.map(({ to, label }) => (
           <li key={to}>
             <NavLink
               to={to}
@@ -24,8 +29,8 @@ const Navbar = () => {
             </NavLink>
           </li>
         ))}
-        <li>
-          <NavLink to={"/"} className={() => `!px-3 !py-2`}>
+        <li className={`${role === "admin" ? "" : "hidden"}`}>
+          <NavLink to={"/login"} className={() => `!px-3 !py-2`}>
             Logout
           </NavLink>
         </li>
@@ -37,16 +42,20 @@ const Navbar = () => {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const rawUser = sessionStorage.getItem("user");
+  const user = rawUser ? JSON.parse(rawUser) : null;
+  const role = user?.role ?? "";
+
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
   return (
     <div className="w-screen p-5 flex flex-row justify-between">
-      <div className="flex flex-row gap-10">
-        <h1 className="text-2xl">User</h1>
+      <div className="flex flex-row gap-10 pl-5">
+        <h1 className="text-2xl capitalize">{role}</h1>
         <span className="inline w-[2px] h-[24px] bg-black"></span>
-        <h2 className="text-xl">Dusan</h2>
+        <h2 className="text-xl capitalize">{user.fullname}</h2>
       </div>
       <div className="block lg:hidden">
         <div
@@ -82,7 +91,9 @@ const Header = () => {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `px-3 py-2 ${isActive ? "underline underline-offset-4" : ""}`
+              `px-3 py-2 ${isActive ? "underline underline-offset-4" : ""} ${
+                role === "admin" && to !== "/login" ? "hidden" : ""
+              }`
             }
             onClick={() => {
               setIsMenuOpen(false);

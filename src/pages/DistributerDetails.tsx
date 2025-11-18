@@ -1,67 +1,33 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useDistributersQuery } from "../api/query";
+import type { TDistributer } from "../types/types";
 const tableHead = ["Name", "Location", "Contact", "Seed", "Actions"];
-
-const tableRows = [
-  {
-    name: "Dusan",
-    email: "dusan@example.com",
-    location: "Serbia",
-    seed: "Grapes",
-    soil: "Loamy",
-  },
-  {
-    name: "Mira",
-    email: "mira@example.com",
-    location: "Frence",
-    seed: "Berries",
-    soil: "Loamy",
-  },
-  {
-    name: "Nikola",
-    email: "nikola@example.com",
-    location: "Italy",
-    seed: "Wheat",
-    soil: "Loamy",
-  },
-  {
-    name: "Dusan",
-    email: "dusan@example.com",
-    location: "Serbia",
-    seed: "Grapes",
-    soil: "Loamy",
-  },
-  {
-    name: "Mira",
-    email: "mira@example.com",
-    location: "Frence",
-    seed: "Berries",
-    soil: "Loamy",
-  },
-];
 
 export default function DistributerDetails() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isOpen, setIsOpen] = useState<{
-    name: string;
-    email: string;
-    location: string;
-    seed: string;
-    soil: string;
-  } | null>(null);
+  const [isOpen, setIsOpen] = useState<TDistributer | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
 
-  const filteredRows = tableRows.filter((row) =>
-    Object.values(row).some((value) =>
-      String(value).toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  );
+  const { data, isLoading } = useDistributersQuery();
+
+  const filteredRows = useMemo(() => {
+    if (!data) return [];
+    return data.filter((row: TDistributer) =>
+      Object.values(row).some((value) =>
+        String(value).toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [data, searchQuery]);
 
   const paginatedRows = filteredRows.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   );
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="w-screen 2xl:w-full h-full p-5 2xl:p-0">
       <div className="flex flex-col gap-5 mt-20 pb-10">
@@ -98,7 +64,7 @@ export default function DistributerDetails() {
                   <td className="px-10 py-6">{item.seed}</td>
                   <td className="px-10 py-6">
                     <div
-                      className="text-blue-500 underline cursor-pointer w-fit select-none"
+                      className="text-indigo-500 hover:text-indigo-700 underline cursor-pointer w-fit select-none"
                       onClick={() => setIsOpen(item)}
                     >
                       View
@@ -140,7 +106,7 @@ export default function DistributerDetails() {
                 </div>
                 <div className="flex justify-between">
                   <p className="font-semibold">Soil type:</p>
-                  <p>{isOpen.soil}</p>
+                  <p>{isOpen.soilType}</p>
                 </div>
               </div>
               <button

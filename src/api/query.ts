@@ -1,6 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addDistributerDetail, addSoilDetail, fetchDistributerDetails, fetchSoilDetails, loginHook, registerHook } from "./hooks";
+import {
+  addDistributerDetail,
+  addSoilDetail,
+  fetchDistributerDetails,
+  fetchSoilDetails,
+  loginHook,
+  registerHook,
+} from "./hooks";
 import type { TDistributer, TSoil, TUser } from "src/types";
+import { useNavigate } from "react-router-dom";
 
 type UserType = {
   uid: string;
@@ -12,24 +20,34 @@ type UserType = {
 };
 
 export const useRegisterAdminMutation = () => {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: async (adminData: TUser) => {
       registerHook(adminData);
+    },
+    onSuccess: () => {
+      navigate("/");
     },
   });
 };
 
 export const useLoginAdminMutation = () => {
-  return useMutation<UserType, Error, { username: string; password: string }>({
+  const navigate = useNavigate();
+  return useMutation<
+    { message: string; userData: UserType },
+    Error,
+    { username: string; password: string }
+  >({
     mutationFn: loginHook,
     onSuccess: (user) => {
-      sessionStorage.setItem("user", JSON.stringify(user))
+      sessionStorage.setItem("user", JSON.stringify(user.userData));
+      navigate(`/${user.userData.role}/home`);
     },
   });
 };
 
 export const useSoilQuery = () => {
-  return useQuery({
+  return useQuery<TSoil[]>({
     queryKey: ["soil"],
     queryFn: async () => {
       return fetchSoilDetails();
@@ -41,7 +59,7 @@ export const useSoilQuery = () => {
 };
 
 export const useDistributersQuery = () => {
-  return useQuery({
+  return useQuery<TDistributer[]>({
     queryKey: ["distributers"],
     queryFn: async () => {
       return fetchDistributerDetails();
@@ -51,7 +69,6 @@ export const useDistributersQuery = () => {
     retry: 1,
   });
 };
-
 
 export const useSoilMutation = () => {
   const queryClient = useQueryClient();
