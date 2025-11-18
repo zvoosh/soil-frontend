@@ -78,6 +78,7 @@ export const useSoilMutation = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["soil"] });
+      alert("Soil detail added successfully");
     },
   });
 };
@@ -90,6 +91,7 @@ export const useDistributerMutation = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["distributer"] });
+      alert("Distributer added successfully");
     },
   });
 };
