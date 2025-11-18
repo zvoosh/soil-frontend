@@ -49,7 +49,7 @@ const SoilInfoCard = ({
   description: string;
 }) => {
   return (
-    <div className="pb-5">
+    <div className="pb-5 xl:grid grid-cols-[500px_1fr] xl:gap-5 xl:border-b xl:border-gray-300">
       <div className="mb-5">
         <img src={imgSrc} alt={title} className="w-full h-auto object-cover" />
       </div>
@@ -64,7 +64,7 @@ const SoilInfoCard = ({
 export default function SoilInfo() {
   return (
     <div className="w-full h-full flex justify-center pt-20 px-10">
-      <div className="w-full lg:w-2/3 grid grid-cols-1 2xl:grid-cols-[500px_1fr] gap-10 lg:gap-5">
+      <div className="w-full grid grid-cols-1 gap-10 lg:gap-5">
         {infocard.map((item, index) => (
           <SoilInfoCard
             key={index}
