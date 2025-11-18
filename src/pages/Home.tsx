@@ -35,7 +35,7 @@ const SoilDetails = () => {
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl select-none">View Soil Details</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {data?.slice(0, 4).map((item: TSoil, index: number) => (
+          {data?.slice(0, 6).map((item: TSoil, index: number) => (
             <div
               key={index}
               className="bg-gray-100 rounded-lg w-[300px] py-4 px-6 cursor-pointer select-none"
