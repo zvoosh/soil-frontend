@@ -43,6 +43,9 @@ export const useLoginAdminMutation = () => {
       sessionStorage.setItem("user", JSON.stringify(user.userData));
       navigate(`/${user.userData.role}/home`);
     },
+    onError: () => {
+      alert("Invalid username or password");
+    },
   });
 };
 

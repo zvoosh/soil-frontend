@@ -64,7 +64,21 @@ export default function LoginPage() {
           </p>
         </div>
         <div className="w-full">
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5"
+            autoComplete="off"
+          >
+            <input
+              type="text"
+              name="fakeusernameremembered"
+              style={{ display: "none" }}
+            />
+            <input
+              type="password"
+              name="fakepasswordremembered"
+              style={{ display: "none" }}
+            />
             {/* Username */}
             <div>
               <label
@@ -76,7 +90,9 @@ export default function LoginPage() {
               <input
                 type="text"
                 id="username"
+                autoComplete="off"
                 name="username"
+                required
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Enter your username"
@@ -94,8 +110,10 @@ export default function LoginPage() {
               </label>
               <input
                 type="password"
+                autoComplete="new-password"
                 id="password"
                 name="password"
+                required
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
