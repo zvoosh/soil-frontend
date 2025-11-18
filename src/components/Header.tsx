@@ -53,9 +53,9 @@ const Header = () => {
   return (
     <div className="w-screen p-5 flex flex-row justify-between">
       <div className="flex flex-row gap-10 pl-5">
-        <h1 className="text-2xl capitalize">{role}</h1>
+        <h1 className="text-2xl capitalize">{role ? role : "User"}</h1>
         <span className="inline w-[2px] h-[24px] bg-black"></span>
-        <h2 className="text-xl capitalize">{user.fullname}</h2>
+        <h2 className="text-xl capitalize">{user && user.fullname ? user.fullname : "User"}</h2>
       </div>
       <div className="block lg:hidden">
         <div
