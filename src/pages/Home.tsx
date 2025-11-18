@@ -12,7 +12,7 @@ const Heading = () => {
       <h1 className="text-5xl">Welcome, {user && user.fullname ? user.fullname : "User"}</h1>
       <h3 className="text-2xl my-5">Soil menager for applicants</h3>
       <Link
-        to={"/info"}
+        to={"/user/info"}
         className="underline text-indigo-500 hover:text-indigo-700"
       >
         View Soil Info
