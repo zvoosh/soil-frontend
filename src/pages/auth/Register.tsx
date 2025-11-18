@@ -34,6 +34,10 @@ export default function RegisterPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formData.fullname || !formData.username || !formData.password || !formData.role) {
+      alert("Please fill out all fields.");
+      return false;
+    }
     register(formData);
   };
 
@@ -81,6 +85,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 placeholder="Enter your full name"
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none"
+                required
               />
             </div>
             {/* Username */}
@@ -99,6 +104,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 placeholder="Enter your username"
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none"
+                required
               />
             </div>
 
@@ -118,6 +124,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 placeholder="••••••••"
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none"
+                required
               />
             </div>
 
@@ -133,10 +140,13 @@ export default function RegisterPage() {
                 id="role"
                 name="role"
                 value={formData.role}
-                defaultValue={'user'}
                 onChange={handleChange}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none"
+                required
               >
+                <option value="" disabled selected>
+                  Select a topic
+                </option>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
