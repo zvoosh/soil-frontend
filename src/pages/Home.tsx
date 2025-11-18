@@ -5,9 +5,11 @@ import { useDistributersQuery, useSoilQuery } from "../api/query";
 import type { TDistributer, TSoil } from "../types/types";
 
 const Heading = () => {
+  const rawUser = sessionStorage.getItem("user");
+  const user = rawUser ? JSON.parse(rawUser) : null;
   return (
     <div className="text-center mt-40 w-full">
-      <h1 className="text-5xl">Welcome, Dusan</h1>
+      <h1 className="text-5xl">Welcome, {user && user.fullname ? user.fullname : "User"}</h1>
       <h3 className="text-2xl my-5">Soil menager for applicants</h3>
       <Link
         to={"/info"}
