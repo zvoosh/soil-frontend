@@ -64,7 +64,7 @@ const SoilInfoCard = ({
 export default function SoilInfo() {
   return (
     <div className="w-full h-full flex justify-center pt-20 px-10">
-      <div className="w-full grid grid-cols-1 gap-10 lg:gap-5">
+      <div className="w-full 2xl:w-3/4 grid grid-cols-1 gap-10 lg:gap-5">
         {infocard.map((item, index) => (
           <SoilInfoCard
             key={index}
