@@ -76,7 +76,7 @@ export default function DistributerDetails() {
           </table>
         </div>
         {isOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(128,128,128,0.8)] bg-opacity-50">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(128,128,128,0.8)] bg-opacity-50 p-5">
             <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative flex flex-col w-full">
               <button
                 onClick={() => setIsOpen(null)}

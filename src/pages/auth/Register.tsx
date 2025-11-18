@@ -38,7 +38,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center justify-center p-10">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-5xl font-semibold">Soil Farming Agent</h1>
         <div className="flex w-1/2 justify-between mt-8 mb-4 text-gray-600">
@@ -133,6 +133,7 @@ export default function RegisterPage() {
                 id="role"
                 name="role"
                 value={formData.role}
+                defaultValue={'user'}
                 onChange={handleChange}
                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none"
               >

@@ -38,7 +38,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center justify-center p-10">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-5xl font-semibold">Soil Farming Agent</h1>
         <div className="flex w-1/2 justify-between mt-8 mb-4 text-gray-600">
