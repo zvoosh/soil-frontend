@@ -14,7 +14,6 @@ A modern **React + TypeScript** frontend application built with **Vite**, design
   - [Installation](#installation)
 - [Usage](#usage)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
 
 ---
 
