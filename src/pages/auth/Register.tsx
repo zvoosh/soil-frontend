@@ -69,7 +69,7 @@ export default function RegisterPage() {
         </div>
         <div className="w-full">
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Username */}
+            {/* Full name */}
             <div>
               <label
                 htmlFor="fullname"
