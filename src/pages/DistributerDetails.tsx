@@ -35,6 +35,7 @@ export default function DistributerDetails() {
         <div className="flex flex-col gap-5">
           <h3 className="text-2xl select-none">Distributers</h3>
         </div>
+        {/* Search bar */}
         <input
           type="text"
           value={searchQuery}
@@ -46,6 +47,7 @@ export default function DistributerDetails() {
         />
 
         <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+          {/* Table of distributers */}
           <table className="w-full divide-y divide-gray-200 text-sm">
             <thead className="bg-gray-50 text-left text-xs font-semibold text-gray-600">
               <tr>

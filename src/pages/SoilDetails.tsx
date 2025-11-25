@@ -27,6 +27,7 @@ export default function SoilDetails() {
           <h1 className="text-4xl 2xl:text-5xl font-semibold">
             View Soil Details
           </h1>
+          {/* Search bar */}
           <input
             type="text"
             value={searchQuery}
@@ -36,6 +37,7 @@ export default function SoilDetails() {
             }}
             className="mb-1 mt-10 self-start md:self-center w-full sm:w-1/2 2xl:w-1/2 rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
           />
+          {/* Grid of soil details */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10 mb-10">
             {filteredRows.map((item, index) => (
               <div

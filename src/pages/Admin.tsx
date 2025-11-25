@@ -74,7 +74,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
-
+            {/* Soil type */}
             <div>
               <label className="block text-gray-600 mb-1">Soil Type</label>
               <input
@@ -86,7 +86,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
-
+            {/* Contact */}
             <div>
               <label className="block text-gray-600 mb-1">Contact</label>
               <input
@@ -98,6 +98,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
+            {/* Submit Button */}
             <div className="w-full flex justify-end">
               <button
                 type="submit"
@@ -116,6 +117,7 @@ export default function Admin() {
           </h2>
 
           <form onSubmit={handleDistributerSubmit} className="space-y-5">
+            {/* Distributer Name */}
             <div>
               <label className="block text-gray-600 mb-1">
                 Distributor Name
@@ -129,7 +131,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
-
+            {/* Location */}
             <div>
               <label className="block text-gray-600 mb-1">Location</label>
               <input
@@ -141,7 +143,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
-
+            {/* Email */}
             <div>
               <label className="block text-gray-600 mb-1">Email</label>
               <input
@@ -153,7 +155,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
-
+            {/* Seed Type */}
             <div>
               <label className="block text-gray-600 mb-1">Seed Type</label>
               <input
@@ -165,6 +167,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
+            {/* Soil Type */}
             <div>
               <label className="block text-gray-600 mb-1">Soil Type</label>
               <input
@@ -176,6 +179,7 @@ export default function Admin() {
                 className="mb-1 self-start md:self-center w-full rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
               />
             </div>
+            {/* Submit Button */}
             <div className="w-full flex justify-end">
               <button
                 type="submit"

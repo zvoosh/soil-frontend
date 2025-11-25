@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDistributersQuery, useSoilQuery } from "../api/query";
 import type { TDistributer, TSoil } from "../types/types";
 
+// Heading Component
 const Heading = () => {
   const rawUser = sessionStorage.getItem("user");
   const user = rawUser ? JSON.parse(rawUser) : null;
@@ -22,7 +23,7 @@ const Heading = () => {
     </div>
   );
 };
-
+// Soil Details Component
 const SoilDetails = () => {
   const { data, isLoading } = useSoilQuery();
 
@@ -55,6 +56,7 @@ const SoilDetails = () => {
 
 const tableHead = ["Name", "Location", "Contact", "Seed", "Actions"];
 
+// Distributer Details Component
 const DistributerDetails = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isOpen, setIsOpen] = useState<{
@@ -91,6 +93,7 @@ const DistributerDetails = () => {
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl select-none">View Distributer Details</h3>
       </div>
+      {/* Search bar */}
       <input
         type="text"
         value={searchQuery}
@@ -101,6 +104,7 @@ const DistributerDetails = () => {
         className="mb-1 w-fit rounded border border-gray-200 focus:outline-none px-4 py-2 text-sm"
       />
 
+      {/* Table of Distributers */}
       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
         <table className="w-full divide-y divide-gray-200 text-sm">
           <thead className="bg-gray-50 text-left text-xs font-semibold text-gray-600">
