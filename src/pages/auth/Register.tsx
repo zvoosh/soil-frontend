@@ -145,7 +145,7 @@ export default function RegisterPage() {
                 required
               >
                 <option value="" disabled selected>
-                  Select a topic
+                  Select a role
                 </option>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
