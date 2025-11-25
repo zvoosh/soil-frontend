@@ -1,3 +1,5 @@
+// ProtectedRoute.tsx
+
 import { Navigate, useLocation } from "react-router-dom";
 
 interface ProtectedRouteProps {

@@ -1,3 +1,5 @@
+// AdminRoute.tsx
+
 import { Navigate } from "react-router";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {

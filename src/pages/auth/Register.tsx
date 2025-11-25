@@ -1,3 +1,5 @@
+// Register.tsx
+
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRegisterAdminMutation } from "../../api/query";

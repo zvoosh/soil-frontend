@@ -1,3 +1,4 @@
+// DistributerDetails.tsx
 import { useMemo, useState } from "react";
 import { useDistributersQuery } from "../api/query";
 import type { TDistributer } from "../types/types";
